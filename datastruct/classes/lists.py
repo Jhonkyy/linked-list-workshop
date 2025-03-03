@@ -112,6 +112,7 @@ class LinkedList[T]:
         return " -> ".join(str(data) for data in self)
 
 
+
 class OrderedLinkedList[T](LinkedList):
 
     def __init__(self, key: Callable[[Any], Any] = identity):
