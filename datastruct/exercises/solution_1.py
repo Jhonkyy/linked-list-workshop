@@ -2,23 +2,31 @@ from datastruct.classes.lists import LinkedList
 from datastruct.classes.lists import Node
 
 def add_two_numbers(l1: LinkedList[int], l2: LinkedList[int]) -> LinkedList[int]:
-    l1_data = l1.reverse()
-    l2_data = l2.reverse()
-    result = []
+    result = LinkedList[int]()
+    carry = 0
 
-    result_data = l1.head + l2.head
+    first = l1.head
+    second =  l2.head
+    last = None
+
+    while first or second or carry:
+        first_val = first.data if first else 0
+        second_val = second.data if second else 0
+
+        total = first_val + second_val + carry
+        carry = total // 10
+        new_node = Node(total % 10)
+
+        if not result.head:
+            result.head = new_node
+        else:
+            last.next = new_node
+
+        last = new_node
+
+        if first:
+            first = first.next
+        if second:
+            second = second.next
+
     return result
-    pass
-
-l1 = LinkedList()
-l2 = LinkedList()
-
-l1.insert(2)
-l1.insert(4)
-l1.insert(3)
-l2.insert(5)
-l2.insert(6)
-l2.insert(4)
-
-
-print(l1)
